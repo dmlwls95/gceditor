@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/main">Editor</a>
+
+  <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+      <button class="btn btn-outline-light" id="dropdownManual" ngbDropdownToggle><i class="fas fa-bars"></i></button>
+      <div ngbDropdownMenu aria-labelledby="dropdownManual">
+        <button class="dropdown-item" [routerLink]="['/main', {outlets: {'main': ['dashboard']}}]"><i class="fas fa-fw fa-tachometer-alt" ></i> Dashboard</button>
+        <button class="dropdown-item" [routerLink]="['/main', {outlets: {'main': ['chart']}}]"><i class="fas fa-fw fa-chart-area"></i>Charts</button>
+        <button class="dropdown-item"><i class="fas fa-fw fa-table"></i>Tables</button>
+      </div>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <span style="font-size: 1.5em; color: rgb(248, 248, 248);">
+      &nbsp;
+      <i class="fas fa-bell">&nbsp;</i>
+      <i class="fas fa-envelope">&nbsp;</i>
+      <i class="fas fa-user-circle">&nbsp;</i>
+    </span>
+  </div>
+</nav>
+<router-outlet name="main"></router-outlet>
