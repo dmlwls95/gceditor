@@ -10,7 +10,6 @@ import { apiurl } from '../../environments/apiservice';
 })
 
 export class LoginComponent implements OnInit {
-  apiUrl = 'http://localhost:4000/gcUnit';
 
   loginForm: FormGroup;
   submitted = false;
