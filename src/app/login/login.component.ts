@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
-
+import { HttpClient } from '@angular/common/http';
+import { apiurl } from '../../environments/apiservice';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,33 +10,28 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 
 export class LoginComponent implements OnInit {
+  apiUrl = 'http://localhost:4000/gcUnit';
+
   loginForm: FormGroup;
   submitted = false;
-  constructor(private router: Router, private formBuilder: FormBuilder) { }
+  loginData = { username: '', password: '' };
+  message = '';
+  data: any;
+  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
   }
 
-  get f() { return this.loginForm.controls; }
-
-  tempAuth(email: string, password: string ) {
-    if ( email === 'a@a.c' && password === 'aaa') {
-      this.router.navigate(['main']);
-    }
-  }
 
   onSubmit() {
     this.submitted = true;
 
-    if (this.loginForm.invalid) {
-      return;
-    }
-
-    this.tempAuth(this.f.username.value, this.f.password.value);
+    this.http.post(`${apiurl}/gcUnit/login`, this.loginData)
+    .subscribe(res => {
+      this.data = res;
+      localStorage.setItem('jwtToken', this.data.token);
+      this.router.navigate(['main']);
+    });
 
   }
 }

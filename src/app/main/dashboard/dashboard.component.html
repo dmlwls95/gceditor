@@ -1,3 +1,4 @@
-<p>
-  dashboard works!
-</p>
+<br>
+<input #search class="search" type="text" placeholder="Search..." (keydown.enter)="onSearch(search.value)">
+<br>
+<ng2-smart-table [source]="source" [settings]="settings"></ng2-smart-table>

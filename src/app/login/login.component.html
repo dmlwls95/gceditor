@@ -6,13 +6,13 @@
      <h2>editor Login</h2>
      <p>Please enter your email and password</p>
      </div>
-      <form class="container" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <form class="container" #loginForm="ngForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <input type="email" class="form-control" formControlName="username" placeholder="Email Address">
+            <input type="email" class="form-control" placeholder="Email Address" [(ngModel)]="loginData.username" name="username" required/>
           </div>
 
           <div class="form-group">
-            <input type="password" class="form-control" formControlName="password" placeholder="Password">
+            <input type="password" class="form-control" placeholder="Password" [(ngModel)]="loginData.password" name="password" required/>
 
           </div>
           <div class="forgot">
